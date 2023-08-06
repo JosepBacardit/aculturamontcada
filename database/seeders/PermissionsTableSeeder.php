@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PermissionsTableSeeder extends Seeder
 {
@@ -14,9 +15,9 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('permissions')->delete();
+        DB::table('permissions')->delete();
 
-        \DB::table('permissions')->insert(array (
+        DB::table('permissions')->insert(array (
             0 =>
             array (
                 'id' => 1,
