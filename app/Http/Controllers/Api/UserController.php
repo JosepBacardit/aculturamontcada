@@ -80,7 +80,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'email_verified' => Carbon::now(),
+            'email_verified_at' => Carbon::now(),
             'password' => bcrypt($request->password),
         ]);
 
