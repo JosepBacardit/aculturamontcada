@@ -21,7 +21,7 @@ class PermissionsTableSeeder extends Seeder
             0 =>
             array (
                 'id' => 1,
-                'name' => 'Josep Super',
+                'name' => 'Create',
                 'guard_name' => 'web',
                 'created_at' => '2023-08-06 14:51:57',
                 'updated_at' => '2023-08-06 15:58:34',
@@ -29,7 +29,15 @@ class PermissionsTableSeeder extends Seeder
             1 =>
             array (
                 'id' => 2,
-                'name' => 'Edit Role',
+                'name' => 'Edit',
+                'guard_name' => 'web',
+                'created_at' => '2023-08-06 14:53:13',
+                'updated_at' => '2023-08-06 14:53:13',
+            ),
+            2 =>
+            array (
+                'id' => 3,
+                'name' => 'Delete',
                 'guard_name' => 'web',
                 'created_at' => '2023-08-06 14:53:13',
                 'updated_at' => '2023-08-06 14:53:13',
