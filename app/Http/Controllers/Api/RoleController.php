@@ -13,21 +13,6 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @OA\Get(
-     *     path="/api/roles",
-     *     summary="Display a listing of the roles",
-     *     tags={"Roles"},
-     *     description="Display a listing of the roles.",
-     *     operationId="indexRole",
-     *     @OA\Response(
-     *         response=200,
-     *         description="successful operation",
-     *         @OA\Schema(
-     *             type="array"
-     *         ),
-     *     )
-     * )
-     *
      * @return AnonymousResourceCollection
      */
     public function index(): AnonymousResourceCollection
@@ -39,29 +24,6 @@ class RoleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @OA\Post(
-     *    path="/api/roles",
-     *    summary="Store a role in database",
-     *    tags={"Roles"},
-     *    description="Store a role in database.",
-     *    operationId="storeRole",
-     *    @OA\RequestBody(
-     *       required=true,
-     *       @OA\JsonContent(
-     *          required={"name"},
-     *          @OA\Property(property="name", type="string", format="string", example="Admin"),
-     *          @OA\Property(property="guard_name", type="string", format="string", example="web"),
-     *       ),
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param RoleRequest $request
      *
@@ -77,32 +39,6 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @OA\Get(
-     *    path="/api/role/{roleId}",
-     *    summary="Display a specific role",
-     *    tags={"Roles"},
-     *    description="Display a specific role.",
-     *    operationId="showRole",
-     *    @OA\Parameter(
-     *       name="roleId",
-     *       in="path",
-     *       description="Id of role that needs to be fetched",
-     *       required=true,
-     *       @OA\Schema(
-     *           type="integer",
-     *           format="int64",
-     *           minimum=1.0
-     *       )
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
-     *
      * @param Role $role
      *
      * @return RoleResource
@@ -114,40 +50,6 @@ class RoleController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @OA\Put(
-     *    path="/api/roles/{roleId}",
-     *    summary="Update a role in database",
-     *    tags={"Roles"},
-     *    description="Update a role in database.",
-     *    operationId="updateRole",
-     *    @OA\Parameter(
-     *       name="roleId",
-     *       in="path",
-     *       description="Id of role that needs to be updated",
-     *       required=true,
-     *       @OA\Schema(
-     *           type="integer",
-     *           format="int64",
-     *           minimum=1.0
-     *       )
-     *    ),
-     *    @OA\RequestBody(
-     *       required=true,
-     *       @OA\JsonContent(
-     *          required={"name"},
-     *          @OA\Property(property="name", type="string", format="string", example="Admin"),
-     *          @OA\Property(property="guard_name", type="string", format="string", example="web"),
-     *       ),
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param RoleRequest $request
      * @param Role $role
@@ -162,33 +64,6 @@ class RoleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @OA\Delete(
-     *    path="/api/roles/{roleId}",
-     *    summary="Delete a role in database",
-     *    tags={"Roles"},
-     *    description="Delete a role in database.",
-     *    operationId="deleteRole",
-     *    @OA\Parameter(
-     *       name="roleId",
-     *       in="path",
-     *       description="Id of role that needs to be deleted",
-     *       required=true,
-     *       @OA\Schema(
-     *           type="integer",
-     *           format="int64",
-     *           minimum=1.0
-     *       )
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param Role $role
      *

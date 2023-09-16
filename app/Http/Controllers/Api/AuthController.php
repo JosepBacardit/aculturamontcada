@@ -7,7 +7,6 @@ use App\Http\Requests\AuthLoginRequest;
 use App\Http\Requests\AuthLogoutRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -18,36 +17,6 @@ class AuthController extends Controller
 {
     /**
      * Login user and get api token
-     *
-     * @OA\Post(
-     *    path="/api/auth/login",
-     *    summary="Authenticate user and get api token",
-     *    tags={"Auth"},
-     *    description="Authenticate user and get api token.",
-     *    operationId="authLogin",
-     *    @OA\RequestBody(
-     *       required=true,
-     *       @OA\JsonContent(
-     *          required={"email", "password"},
-     *          @OA\Property(property="email", type="string", format="string", example="example@example.com"),
-     *          @OA\Property(property="password", type="password", format="string", example="12345678"),
-     *       ),
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    ),
-     *    @OA\Response(
-     *        response=401,
-     *        description="Invalid credentials",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param AuthLoginRequest $request
      *
@@ -70,22 +39,6 @@ class AuthController extends Controller
 
     /**
      * Logout and delete token
-     *
-     * @OA\Post(
-     *    path="/api/auth/logout",
-     *    summary="Logout user and delete api token",
-     *    tags={"Auth"},
-     *    description="Logout user and delete api token.",
-     *    security={ {"sanctum": {} }},
-     *    operationId="authLogout",
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param AuthLogoutRequest $request
      *

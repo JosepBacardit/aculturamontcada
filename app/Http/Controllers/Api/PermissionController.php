@@ -13,21 +13,6 @@ class PermissionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @OA\Get(
-     *     path="/api/permissions",
-     *     summary="Display a listing of the permissions",
-     *     tags={"Permissions"},
-     *     description="Display a listing of the permissions.",
-     *     operationId="indexPermission",
-     *     @OA\Response(
-     *         response=200,
-     *         description="successful operation",
-     *         @OA\Schema(
-     *             type="array"
-     *         ),
-     *     )
-     * )
-     *
      * @return AnonymousResourceCollection
      */
     public function index(): AnonymousResourceCollection
@@ -39,29 +24,6 @@ class PermissionController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @OA\Post(
-     *    path="/api/permissions",
-     *    summary="Store a perimission in database",
-     *    tags={"Permissions"},
-     *    description="Store a permission in database.",
-     *    operationId="storePermission",
-     *    @OA\RequestBody(
-     *       required=true,
-     *       @OA\JsonContent(
-     *          required={"name"},
-     *          @OA\Property(property="name", type="string", format="string", example="Store role"),
-     *          @OA\Property(property="guard_name", type="string", format="string", example="web"),
-     *       ),
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param PermissionRequest $request
      *
@@ -77,32 +39,6 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @OA\Get(
-     *    path="/api/permissions/{permissionId}",
-     *    summary="Display a specific permission",
-     *    tags={"Permissions"},
-     *    description="Display a specific permission.",
-     *    operationId="showPermission",
-     *    @OA\Parameter(
-     *       name="permissionId",
-     *       in="path",
-     *       description="Id of permission that needs to be fetched",
-     *       required=true,
-     *       @OA\Schema(
-     *           type="integer",
-     *           format="int64",
-     *           minimum=1.0
-     *       )
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
-     *
      * @param Permission $permission
      *
      * @return PermissionResource
@@ -114,40 +50,6 @@ class PermissionController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @OA\Put(
-     *    path="/api/permissions/{permissionId}",
-     *    summary="Update a permission in database",
-     *    tags={"Permissions"},
-     *    description="Update a permission in database.",
-     *    operationId="updatePermission",
-     *    @OA\Parameter(
-     *       name="permissionId",
-     *       in="path",
-     *       description="Id of permission that needs to be updated",
-     *       required=true,
-     *       @OA\Schema(
-     *           type="integer",
-     *           format="int64",
-     *           minimum=1.0
-     *       )
-     *    ),
-     *    @OA\RequestBody(
-     *       required=true,
-     *       @OA\JsonContent(
-     *          required={"name"},
-     *          @OA\Property(property="name", type="string", format="string", example="Admin"),
-     *          @OA\Property(property="guard_name", type="string", format="string", example="web"),
-     *       ),
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param PermissionRequest $request
      * @param Permission $permission
@@ -163,32 +65,6 @@ class PermissionController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @OA\Delete(
-     *    path="/api/permissions/{permissionId}",
-     *    summary="Delete a permission in database",
-     *    tags={"Permissions"},
-     *    description="Delete a permission in database.",
-     *    operationId="deletePermission",
-     *    @OA\Parameter(
-     *       name="permissionId",
-     *       in="path",
-     *       description="Id of permission that needs to be deleted",
-     *       required=true,
-     *       @OA\Schema(
-     *           type="integer",
-     *           format="int64",
-     *           minimum=1.0
-     *       )
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful operation",
-     *        @OA\Schema(
-     *            type="array"
-     *        ),
-     *    )
-     * )
      *
      * @param Permission $permission
      *
