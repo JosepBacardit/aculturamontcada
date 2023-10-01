@@ -20,7 +20,8 @@ class RoleResource extends JsonResource
             'name' => $this->name,
             'guard_name' => $this->guard_name,
             'created_at' => Carbon::parse($this->created_at)->format('d/m/Y H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y H:i:s')
+            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y H:i:s'),
+            'permissions' => PermissionResource::collection($this->permissions)
         ];
     }
 }

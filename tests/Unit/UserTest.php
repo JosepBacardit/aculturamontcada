@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -210,5 +211,38 @@ class UserTest extends TestCase
             'name' => "User 1",
             'email' => 'example@example.com'
         ]);
+    }
+
+    /**
+     * Test assign role to user
+     *
+     * @return void
+     */
+    public function test_assign_permission_to_role(): void
+    {
+        // Preparation / Prepare
+        $user = User::create([
+            'name' => 'User 1',
+            'email' => 'example@example.com',
+            'password' => '12345678',
+        ]);
+        $role = Role::create([
+            'name' => 'Role 1',
+            'guard_name' => 'api',
+        ]);
+
+        $response = $this->post(self::URL. '/' . $user->id . '/role/' . $role->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'data' => [
+                'name' => 'User 1',
+                'roles' => [
+                    ['name' => 'Role 1']
+                ]
+            ]
+        ]);
+
+        $this->assertDatabaseCount('model_has_roles', 1);
     }
 }

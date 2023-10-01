@@ -28,6 +28,9 @@ Route::middleware('auth:sanctum')->group(function () {
         'permissions' => PermissionController::class,
         'users' => UserController::class
     ]);
+
+    Route::post('roles/{role}/permission/{permission}' , [RoleController::class, 'givePermissionTo']);
+    Route::post('users/{user}/role/{role}' , [UserController::class, 'assignRole']);
 });
 
 

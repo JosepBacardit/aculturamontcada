@@ -21,24 +21,32 @@ class PermissionsTableSeeder extends Seeder
             0 =>
             array (
                 'id' => 1,
-                'name' => 'Create',
-                'guard_name' => 'web',
+                'name' => 'create_user',
+                'guard_name' => 'api',
                 'created_at' => '2023-08-06 14:51:57',
                 'updated_at' => '2023-08-06 15:58:34',
             ),
             1 =>
             array (
                 'id' => 2,
-                'name' => 'Edit',
-                'guard_name' => 'web',
+                'name' => 'edit_user',
+                'guard_name' => 'api',
                 'created_at' => '2023-08-06 14:53:13',
                 'updated_at' => '2023-08-06 14:53:13',
             ),
             2 =>
             array (
                 'id' => 3,
-                'name' => 'Delete',
-                'guard_name' => 'web',
+                'name' => 'delete_user',
+                'guard_name' => 'api',
+                'created_at' => '2023-08-06 14:53:13',
+                'updated_at' => '2023-08-06 14:53:13',
+            ),
+            3 =>
+            array (
+                'id' => 4,
+                'name' => 'show_user',
+                'guard_name' => 'api',
                 'created_at' => '2023-08-06 14:53:13',
                 'updated_at' => '2023-08-06 14:53:13',
             ),

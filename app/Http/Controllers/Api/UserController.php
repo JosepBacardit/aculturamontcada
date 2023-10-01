@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Carbon;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -84,6 +85,25 @@ class UserController extends Controller
     public function destroy(User $user): UserResource
     {
         $user->delete();
+
+        return UserResource::make($user);
+    }
+
+    /**
+     * Assign role to user
+     *
+     * @param User $user
+     * @param Role $role
+     *
+     * @return UserResource
+     */
+    public function assignRole(User $user, Role $role): UserResource
+    {
+        try{
+            $user->assignRole($role);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
 
         return UserResource::make($user);
     }

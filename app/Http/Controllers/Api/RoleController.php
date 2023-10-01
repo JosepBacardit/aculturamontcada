@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Http\Resources\RoleResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -72,6 +73,13 @@ class RoleController extends Controller
     public function destroy(Role $role): RoleResource
     {
         $role->delete();
+
+        return RoleResource::make($role);
+    }
+
+    public function givePermissionTo(Role $role, Permission $permission): RoleResource
+    {
+        $role->givePermissionTo($permission);
 
         return RoleResource::make($role);
     }
