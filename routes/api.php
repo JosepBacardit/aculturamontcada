@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\LabelController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
@@ -26,11 +27,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiresources([
         'roles' => RoleController::class,
         'permissions' => PermissionController::class,
-        'users' => UserController::class
+        'users' => UserController::class,
+        'labels' => LabelController::class
     ]);
 
-    Route::post('roles/{role}/permission/{permission}' , [RoleController::class, 'givePermissionTo']);
-    Route::post('users/{user}/role/{role}' , [UserController::class, 'assignRole']);
+    Route::post('roles/{role}/permission/{permission}', [RoleController::class, 'givePermissionTo']);
+    Route::post('users/{user}/role/{role}', [UserController::class, 'assignRole']);
+    Route::post('labels/{label}/assign/{model}', [LabelController::class, 'assignLabel']);
 });
 
 
