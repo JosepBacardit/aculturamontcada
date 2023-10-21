@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
+use App\Models\Label;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
-use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 
-class PermissionTest extends TestCase
+class LabelTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,7 +17,7 @@ class PermissionTest extends TestCase
      *
      * @var string
      */
-    public const URL = '/api/permissions';
+    public const URL = '/api/labels';
 
 
     protected function setUp(): void
@@ -33,12 +33,12 @@ class PermissionTest extends TestCase
      *
      * return @void
      */
-    public function test_listing_permissions(): void
+    public function test_listing_labels(): void
     {
         // Preparation / Prepare
-        Permission::create(['name' => 'Permission 1']);
-        Permission::create(['name' => 'Permission 2']);
-        Permission::create(['name' => 'Permission 3']);
+        Label::create(['name' => 'Label 1', 'color' => '#FFFFFF']);
+        Label::create(['name' => 'Label 2', 'color' => '#DDDDDD']);
+        Label::create(['name' => 'Label 3', 'color' => '#EEEEEE']);
 
         // Action / Perform
         $response = $this->getJson(self::URL);
@@ -48,16 +48,19 @@ class PermissionTest extends TestCase
         $response->assertJson([
             'data' => [
                 0 => [
-                    "id" => 1,
-                    "name" => "Permission 1"
+                    'id' => 1,
+                    'name' => 'Label 1',
+                    'color' => '#FFFFFF'
                 ],
                 1 => [
-                    "id" => 2,
-                    "name" => "Permission 2"
+                    'id' => 2,
+                    'name' => 'Label 2',
+                    'color' => '#DDDDDD'
                 ],
                 2 => [
-                    "id" => 3,
-                    "name" => "Permission 3"
+                    'id' => 3,
+                    'name' => 'Label 3',
+                    'color' => '#EEEEEE'
                 ]
             ]
         ]);
@@ -68,11 +71,12 @@ class PermissionTest extends TestCase
      *
      * @return void
      */
-    public function test_store_permissions(): void
+    public function test_store_labels(): void
     {
         // Preparation / Prepare
         $data = [
-            'name' => 'Permission Store'
+            'name' => 'Label Store',
+            'color' => '#FFFFFF'
         ];
 
         // Action / Perform
@@ -82,12 +86,13 @@ class PermissionTest extends TestCase
         $response->assertStatus(201);
         $response->assertJson([
             'data' => [
-                    "name" => "Permission Store"
+                    'name' => 'Label Store',
+                    'color' => '#FFFFFF'
             ]
         ]);
 
-        $this->assertDatabaseCount('permissions', 1);
-        $this->assertDatabaseHas('permissions', $data);
+        $this->assertDatabaseCount('labels', 1);
+        $this->assertDatabaseHas('labels', $data);
     }
 
     /**
@@ -95,19 +100,20 @@ class PermissionTest extends TestCase
      *
      * @return void
      */
-    public function test_show_permissions(): void
+    public function test_show_labels(): void
     {
         // Preparation / Prepare
-        $permission = Permission::create(['name' => 'Permission Show']);
+        $label = Label::create(['name' => 'Label Show']);
 
         // Action / Perform
-        $response = $this->getJson(self::URL. '/'. $permission->id);
+        $response = $this->getJson(self::URL. '/'. $label->id);
 
         //Asertion /Predict
         $response->assertStatus(200);
         $response->assertJson([
             'data' => [
-                    "name" => "Permission Show"
+                    'name' => 'Label Show',
+                    'color' => '#FFFFFF'
             ]
         ]);
     }
@@ -117,27 +123,29 @@ class PermissionTest extends TestCase
      *
      * @return void
      */
-    public function test_update_permissions(): void
+    public function test_update_labels(): void
     {
         // Preparation / Prepare
-        $permission = Permission::create(['name' => 'Permission Update']);
+        $label = Label::create(['name' => 'Label Update', 'color' => '#FFFFFF']);
 
         $data = [
-            'name' => 'Permission Update'
+            'name' => 'Label Update',
+            'color' => '#FFFFFF'
         ];
 
         // Action / Perform
-        $response = $this->putJson(self::URL. '/'. $permission->id, $data);
+        $response = $this->putJson(self::URL. '/'. $label->id, $data);
 
         //Asertion /Predict
         $response->assertStatus(200);
         $response->assertJson([
             'data' => [
-                    "name" => "Permission Update"
+                    'name' => 'Label Update',
+                    'color' => '#FFFFFF'
             ]
         ]);
 
-        $this->assertDatabaseHas('permissions', $data);
+        $this->assertDatabaseHas('labels', $data);
     }
 
     /**
@@ -145,22 +153,23 @@ class PermissionTest extends TestCase
      *
      * @return void
      */
-    public function test_delete_permissions(): void
+    public function test_delete_labels(): void
     {
         // Preparation / Prepare
-        $permission = Permission::create(['name' => 'Permission 1']);
+        $label = Label::create(['name' => 'Label 1', 'color' => '#FFFFFF']);
 
         // Action / Perform
-        $response = $this->delete(self::URL. '/'. $permission->id);
+        $response = $this->delete(self::URL. '/'. $label->id);
 
         //Asertion /Predict
         $response->assertStatus(200);
         $response->assertJson([
             'data' => [
-                    "name" => "Permission 1"
+                    'name' => 'Label 1',
+                    'color' => '#FFFFFF'
             ]
         ]);
 
-        $this->assertDatabaseCount('permissions', 0);
+        $this->assertDatabaseCount('labels', 0);
     }
 }
